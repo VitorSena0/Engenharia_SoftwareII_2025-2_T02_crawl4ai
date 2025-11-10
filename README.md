@@ -79,7 +79,5 @@ Todo o código, scripts e notebooks utilizados para executar a análise e gerar 
 
 1.  Clone o repositório:
     ```bash
-    git clone https://github.com/VitorSena0/Engenharia_SoftwareII_2025-2_T04_crawl4ai.git
+    git clone https://github.com/VitorSena0/Engenharia_SoftwareII_2025-2_T02_crawl4ai.git
     ```
-2.  [Instrução de como instalar dependências, e.g., `pip install -r requirements.txt`]
-3.  [Instrução de como executar o código/notebook para a análise]
