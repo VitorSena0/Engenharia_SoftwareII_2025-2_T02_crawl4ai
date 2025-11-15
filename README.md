@@ -29,11 +29,10 @@ O objetivo é correlacionar as evidências (issues, código, documentação) e p
 ---
 
 ## Artefatos incluídos
-- `docs/Identificações de Padrões Arquiteturais.pdf` — relatório final (PDF) com resultados e justificativas.
-- `scripts/` — scripts Python para extração de AST, agrupamento de issues, chamadas ao modelo e pós-processamento.
-- `notebooks/` — notebooks Jupyter com experimentos exploratórios e visualizações.
-- `artifacts/` — saídas geradas (resumos de issues, resultados JSON por arquivo, prompts utilizados, logs).
-- `requirements.txt` — dependências Python usadas para reproduzir os experimentos.
+- `tutorial/` —  Scripts reutilizáveis, conter módulos que os notebooks ou apps importam.
+- `tutorial/` — Relatório final (PDF) com resultados e justificativas.
+- `docs/` — Documentos e materiais de apoio (PDFs, tutoriais, respostas em MD).
+- `notebooks/` — Notebooks Jupyter com análises, experimentos e provas de conceito.
 
 > Se algum desses diretórios não existir no repositório atual, usar como _template_ para organizar os artefatos.
 
