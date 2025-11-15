@@ -1,6 +1,6 @@
 # Identificação de Padrões Arquiteturais — `crawl4ai`
 
-> Repositório com os artefatos, scripts e instruções para reproduzir a Atividade 1 da disciplina Engenharia de Software II (2025.2): identificação e comparação de padrões arquiteturais no projeto `crawl4ai` usando LLMs e análise manual.
+> Repositório com os artefatos, scripts e instruções para reproduzir a Atividade 1 da disciplina Engenharia de Software II (2025.2): identificação e comparação de padrões arquiteturais no projeto `crawl4ai` com o apoio de modelos de linguagem.
 
 ---
 
@@ -9,13 +9,17 @@
 - [Artefatos incluídos](#artefatos-incluídos)
 - [Modelos utilizados (Hugging Face)](#modelos-utilizados-hugging-face)
 - [Metodologia e scripts principais](#metodologia-e-scripts-principais)
+- [Análises Arquiteturais por LLM](#análises-arquiteturais-por-llm)
+  - [Análise Arquitetural com CodeLlama 7B](#análise-arquitetural-com-codellama-7b)
+  - [Espaço para outras LLMs](#espaço-para-outras-llms)
 - [Principais achados (resumo)](#principais-achados-resumo)
 - [Limitações e cuidados](#limitações-e-cuidados)
 
---
+---
 
 ## Visão Geral
 Este repositório documenta os procedimentos e contém os artefatos usados para identificar padrões arquiteturais no projeto alvo `crawl4ai`. A análise foi conduzida com três estratégias principais:
+
 1. **Análise automática de issues** (pipeline que resume e classifica issues do GitHub em temas arquiteturais);
 2. **Análise do código-fonte por modelos de linguagem** (extração de "esqueleto" do código + perguntas factuais ao modelo);
 3. **Análise manual** (leitura crítica do código, README e histórico de commits).
@@ -73,12 +77,74 @@ Abaixo estão os passos principais e os scripts propostos para cada etapa. Os sc
 
 ---
 
+## Análises Arquiteturais por LLM
+
+### Análise Arquitetural com CodeLlama 7B
+
+Esta análise utiliza o notebook `notebooks/codellama-issues-e-pasta-principal.ipynb` para identificar padrões arquiteturais e inspecionar issues do repositório `crawl4ai` usando o modelo **CodeLlama 7B**.
+
+#### Infraestrutura Utilizada
+
+Para garantir a reprodutibilidade, a análise foi executada em um ambiente de nuvem específico e contido, com recursos suficientes para replicar o estudo e entender as limitações de hardware:
+
+- **Plataforma de Nuvem:** Kaggle Notebook  
+- **Serviço/Recursos:** Instância com acelerador de GPU  
+- **GPU:** NVIDIA Tesla T4  
+- **VRAM (Memória da GPU):** 16 GB  
+- **CPU / RAM:** Configuração padrão do ambiente Kaggle com GPU
+
+A escolha dessa infraestrutura (GPU T4 com 16 GB) foi um fator limitante, exigindo otimizações como **quantização em 4 bits** e **gerenciamento explícito de memória** (detalhados no notebook e no código) para executar o modelo CodeLlama 7B.
+
+#### Reprodutibilidade e Instruções de Execução
+
+O notebook foi projetado para ser totalmente reprodutível:
+
+- Não depende de um `requirements.txt` separado;  
+- As dependências são instaladas diretamente na **primeira célula** do notebook;
+- Os dados da análise (as **55 issues** utilizadas) estão embutidos no código para garantir que o script sempre gere os mesmos resultados.
+
+##### Como executar
+
+1. **Ambiente**
+   - Acesse a plataforma [Kaggle](https://www.kaggle.com/).
+
+2. **Notebook**
+   - Crie um novo notebook e carregue o arquivo  
+     `notebooks/codellama-issues-e-pasta-principal.ipynb`.
+
+3. **Configuração de Hardware**
+   - Nas configurações do notebook (painel à direita), defina:
+     - `Accelerator`: **GPU (T4 x1)**
+     - `Internet`: **ON** (necessário para baixar dependências e o modelo).
+
+4. **Dependências**
+   - Execute a **primeira célula de código** do notebook.
+   - Ela instalará todas as bibliotecas necessárias (`transformers`, `accelerate`, `bitsandbytes`, `torch`, etc.).
+
+5. **Execução Completa**
+   - Execute todas as células do notebook **sequencialmente**.
+   - O script irá:
+     - Carregar o modelo CodeLlama 7B com quantização apropriada;
+     - Analisar os arquivos de código do projeto (`Estratégia 1`);
+     - Analisar as 55 issues embutidas no próprio notebook (`Estratégia 2`);
+     - Gerar os arquivos de resultados, incluindo:
+       - `artifacts/architectural_evidence.json`
+       - e demais relatórios de análise descritos no notebook.
+
+---
+
+.
+.adicionar as outras aqui
+.
+
+---
+
 ## Principais achados (resumo)
 > Este resumo sintetiza os resultados que estão detalhados no PDF de apresentação.
 
 - **Arquiteturas identificadas:** Microkernel (núcleo + estratégias/plugins), Pipe & Filter (pipeline de processamento de conteúdo), Arquitetura em Camadas (interface → aplicação → domínio → infraestrutura).
-- **Padrões de projeto detectados (exemplos):** Cache (@lru_cache em `model_loader.py`), Factory Method (funções `load_*`), Semaphore (`asyncio.Semaphore` em `async_dispatcher.py`), Decorator (uso parcial em `async_webcrawler.py`), Hook/Plugin (evidências em Issues e módulos `hooks`).
-- **Evidências relevantes:** Issues específicas (#1527, #1572, #1212, etc.), trechos do `async_webcrawler.py` e `model_loader.py` analisados.
+- **Padrões de projeto detectados (exemplos):** Cache (`@lru_cache` em `model_loader.py`), Factory Method (funções `load_*`), Semaphore (`asyncio.Semaphore` em `async_dispatcher.py`), Decorator (uso de decoradores em funções utilitárias), entre outros.
+- **Evidências relevantes:** Issues específicas (#1527, #1572, #1212, etc.), trechos de `async_webcrawler.py` e `model_loader.py` analisados.
 
 > Para ver as evidências completas consulte o documento `docs/Identificações de Padrões Arquiteturais.pdf` (artefato gerado pelo grupo).
 
@@ -90,6 +156,3 @@ Abaixo estão os passos principais e os scripts propostos para cada etapa. Os sc
 - **Recursos computacionais**: execuções com CodeLlama-7b exigem GPU e memória; caso contrário, usar modelos menores ou dividir contexto.
 
 ---
-
-
-
