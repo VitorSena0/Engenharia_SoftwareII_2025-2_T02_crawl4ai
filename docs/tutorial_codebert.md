@@ -4,16 +4,17 @@ Notebook (permalink): [Clusterizando arquivos Crawl4ai com o Codebert.ipynb](htt
 
 -----
 
-## 1\) Criar o Notebook no Kaggle
+## 1) Criar o Notebook no Kaggle
 
 1.  Acesse: [https://www.kaggle.com/code](https://www.kaggle.com/code)
 2.  Clique em **“Create Notebook”**.
 3.  Nas **“Settings”** (ícone de engrenagem, canto direito):
-      * **Accelerator:** CPU (geralmente suficiente para este notebook, pois o CodeBERT é leve) ou GPU (se disponível, acelera a inferência).
-      * **Internet:** ON (necessário para instalar pacotes, clonar o repositório e baixar o modelo CodeBERT).
+    * **Accelerator:** CPU (geralmente suficiente para este notebook, pois o CodeBERT é leve) ou GPU (se disponível, acelera a inferência).
+    * **Internet:** ON (necessário para instalar pacotes, clonar o repositório e baixar o modelo CodeBERT).
 4.  Importe o arquivo do GitHub:
-      * Baixe o `.ipynb` do link acima e, no Kaggle, use **File \> Upload Notebook** para enviar; ou
-      * Copie o conteúdo das células do seu notebook local e cole em um novo notebook no Kaggle.
+    * Baixe o `.ipynb` do link acima e, no Kaggle, use **File > Upload Notebook** para enviar; ou
+    * Copie o conteúdo das células do seu notebook local e cole em um novo notebook no Kaggle.
+5.  **Execução:** Após o notebook carregar, basta executar todas as células em sequência para gerar os clusters.
 
 -----
 
