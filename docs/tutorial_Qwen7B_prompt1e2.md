@@ -58,13 +58,14 @@ os.environ['HF_TOKEN'] = hf_token
 
 ## 🔑 Opção B: Kaggle
 
-1. Na barra lateral direita do notebook, clique em **Secrets**.  
-2. Clique em **Add a new Secret**.  
-3. Defina:
+1. Na barra superior do notebook, clique em **Add-ons**.
+2. Clique em **Secrets**  
+3. Clique em **Add Secret**.  
+4. Defina:
    - **Label:** `HF_TOKEN`
    - **Value:** seu Hugging Face Access Token  
-4. Clique em **Done** e verifique se ele aparece na lista.  
-5. Execute a seguinte célula do notebook:
+5. Clique em **Save** e verifique se ele aparece na lista.  
+6. Execute a seguinte célula do notebook:
 
 ```python
 import os
