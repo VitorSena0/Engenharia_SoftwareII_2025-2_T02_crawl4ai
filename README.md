@@ -112,6 +112,8 @@ O notebook foi projetado para ser totalmente reprodutível:
 2. **Notebook**
    - Crie um novo notebook e carregue o arquivo  
      `notebooks/codellama-issues-e-pasta-principal.ipynb`.
+   - Caso tenha clusterizado os arquivos com o CodeBERT-base, carregue o arquivo abaixo ao invés do anterior
+     `notebooks/Crawl4ai com Llama (arquivos escolhidos pelo codebert).ipynb`    
 
 3. **Configuração de Hardware**
    - Nas configurações do notebook (painel à direita), defina:
@@ -157,18 +159,36 @@ Este guia mostra como rodar o notebook “Clusterizando arquivos Crawl4ai com o 
 
 > Tutorial completo: veja [docs/tutorial_codebert.md](docs/tutorial_codebert.md).
 
-Pontos principais:
+### Como executar
 
-- **Ambiente:** Kaggle Notebooks, com `Internet: ON`. CPU é suficiente; GPU opcional.
-- **Instalação de dependências:** `transformers`, `scikit-learn`, e `protobuf==3.20.3` para evitar conflitos.
-- **Repositório alvo:** clonar `https://github.com/unclecode/crawl4ai.git`.
-- **Modelo:** carregamento de `microsoft/codebert-base` diretamente da Hugging Face (sem token).
-- **Pipeline:**
-  - Geração de embeddings para cada arquivo `.py`;
-  - Clusterização com K-Means (ajustável com `n_clusters`);
-  - Inspeção dos clusters e dos “tópicos” por palavras-chave.
+1.  **Ambiente**
+    * Acesse a plataforma [Kaggle](https://www.kaggle.com/).
 
----
+2.  **Notebook**
+    * Crie um novo notebook e carregue o arquivo:
+        `notebooks/Clusterizando arquivos Crawl4ai com o Codebert.ipynb`
+
+3.  **Configuração de Hardware**
+    * Nas configurações do notebook (painel à direita), defina:
+        * `Accelerator`: **CPU** (Suficiente para esta etapa)
+        * `Internet`: **ON** (Necessário para baixar dependências, o modelo e clonar o repositório).
+
+4.  **Dependências**
+    * Execute a **primeira célula de código** do notebook para instalar as bibliotecas:
+        ```python
+        !pip install transformers
+        !pip install scikit-learn
+        !pip install protobuf==3.20.3
+        ```
+
+5.  **Execução Completa**
+    * Execute todas as células do notebook **sequencialmente**.
+    * O script irá:
+        1.  Clonar o repositório `crawl4ai` do GitHub.
+        2.  Carregar o modelo `microsoft/codebert-base`.
+        3.  Ler todos os arquivos `.py` e gerar *embeddings* (vetores) para eles.
+        4.  Aplicar K-Means para agrupar os arquivos em 5 clusters.
+    * O resultado final será a lista de arquivos de cada cluster, que servirá de entrada para a Fase 2 (CodeLlama).
 
 *********************** continuar a mesma ideia para as outras llms ************************
 
