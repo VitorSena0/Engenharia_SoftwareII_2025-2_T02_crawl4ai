@@ -198,9 +198,7 @@ Este tutorial descreve os passos necessários para executar o notebook `notebook
 
 > Tutorial completo: veja `docs/tutorial_qwen7b.md` (quando presente).
 
----
-
-## Infraestrutura Utilizada
+**Infraestrutura Utilizada**
 
 A análise foi executada em ambiente leve e reprodutível, pois o modelo foi acessado remotamente por API:
 
@@ -212,9 +210,7 @@ A análise foi executada em ambiente leve e reprodutível, pois o modelo foi ace
 
 Essa abordagem elimina limitações de hardware e permite utilizar modelos de 7B sem instalação local.
 
----
-
-## Reprodutibilidade e Instruções Gerais
+**Reprodutibilidade e Instruções Gerais**
 
 O notebook foi construído com foco em reprodutibilidade total:
 
@@ -224,16 +220,73 @@ O notebook foi construído com foco em reprodutibilidade total:
 - As análises Macro e Micro seguem prompts padronizados  
 - Gera sempre o mesmo conjunto de artefatos ao final
 
----
+**Como Executar**
 
-## Como Executar
-
-### 1. Ambiente
+**1. Ambiente**
 Acesse o Google Colab:
 https://colab.research.google.com/
 
-### 2. Notebook
+**2. Notebook**
 Carregue o arquivo:
+
+
+**3. Autenticação**
+Antes de iniciar, gere um token no Hugging Face com permissão de *Inference* e configure-o na primeira célula do notebook.
+
+**4. Configuração**
+Execute sequencialmente as células, que realizam:
+
+1. Instalação de dependências  
+2. Configuração do cliente Hugging Face  
+3. Clonagem do repositório  
+4. Coleta de arquivos Python  
+5. Análise Macro  
+6. Análise Micro  
+7. Síntese do relatório final
+
+** Etapas da Análise (realizadas pelo LLM)**
+
+**Análise Macro**
+O modelo recebe a lista de arquivos do projeto e identifica:
+
+- Camadas presentes (domínio, infraestrutura, interface etc.)  
+- Organização estrutural  
+- Módulos essenciais  
+- Estilo arquitetural predominante  
+
+Essa etapa produz uma visão global do sistema.
+
+**Análise Micro**
+Cada arquivo `.py` é analisado individualmente quanto a:
+
+- Responsabilidade principal  
+- Camada à qual pertence  
+- Dependências  
+- Padrões de projeto utilizados  
+- Pontos fortes e oportunidades de melhoria  
+
+As respostas são armazenadas em um arquivo JSON para posterior consulta.
+
+**Síntese Final**
+O notebook combina:
+
+- a visão Macro  
+- as análises Micro individuais  
+
+E gera automaticamente um **Relatório Técnico de Arquitetura**, contendo:
+
+- arquitetura de alto nível  
+- componentes principais  
+- padrões arquiteturais observados  
+- integrações (browser, rede, Docker, LLMs)  
+- pontos fortes e riscos  
+- sugestões de melhoria  
+
+Este relatório é salvo como um dos artefatos finais da execução.
+
+---
+
+
 
 
 
