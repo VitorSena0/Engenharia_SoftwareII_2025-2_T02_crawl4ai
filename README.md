@@ -192,6 +192,50 @@ Este guia mostra como rodar o notebook “Clusterizando arquivos Crawl4ai com o 
 
 
 ---
+### Qwen/Qwen2.5-Coder-7B-Instruct outra abordagem
+
+Este tutorial descreve os passos necessários para executar o notebook `notebooks/Analise_QWEN2.5-Coder-7B_Crawl4AI.ipynb` no Google Colab, com o objetivo de identificar padrões arquiteturais, camadas e responsabilidades do repositório `crawl4ai`. Toda a análise foi realizada utilizando o modelo **Qwen/Qwen2.5-Coder-7B-Instruct** fornecido via API do Hugging Face, sem necessidade de GPU local.
+
+> Tutorial completo: veja `docs/tutorial_qwen7b.md` (quando presente).
+
+---
+
+## Infraestrutura Utilizada
+
+A análise foi executada em ambiente leve e reprodutível, pois o modelo foi acessado remotamente por API:
+
+- **Plataforma:** Google Colab (versão gratuita)  
+- **GPU:** Não necessária  
+- **CPU/RAM:** Recursos padrão do Colab (CPU + ~12–15 GB RAM)  
+- **Internet:** Obrigatória (para acesso ao Hugging Face)  
+- **Dependências externas:** Apenas o token de acesso Hugging Face
+
+Essa abordagem elimina limitações de hardware e permite utilizar modelos de 7B sem instalação local.
+
+---
+
+## Reprodutibilidade e Instruções Gerais
+
+O notebook foi construído com foco em reprodutibilidade total:
+
+- Não depende de arquivos locais ou `requirements.txt`  
+- Clona automaticamente o repositório `crawl4ai`  
+- Instala dependências diretamente na primeira célula  
+- As análises Macro e Micro seguem prompts padronizados  
+- Gera sempre o mesmo conjunto de artefatos ao final
+
+---
+
+## Como Executar
+
+### 1. Ambiente
+Acesse o Google Colab:
+https://colab.research.google.com/
+
+### 2. Notebook
+Carregue o arquivo:
+
+
 
 ## Principais achados (resumo)
 > Este resumo sintetiza os resultados que estão detalhados no PDF de apresentação.
